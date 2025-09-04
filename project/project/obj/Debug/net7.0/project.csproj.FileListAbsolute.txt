@@ -1,0 +1,15 @@
+/Users/irgegh/Documents/GitHub/homework3/project/project/bin/Debug/net7.0/project
+/Users/irgegh/Documents/GitHub/homework3/project/project/bin/Debug/net7.0/project.deps.json
+/Users/irgegh/Documents/GitHub/homework3/project/project/bin/Debug/net7.0/project.runtimeconfig.json
+/Users/irgegh/Documents/GitHub/homework3/project/project/bin/Debug/net7.0/project.dll
+/Users/irgegh/Documents/GitHub/homework3/project/project/bin/Debug/net7.0/project.pdb
+/Users/irgegh/Documents/GitHub/homework3/project/project/obj/Debug/net7.0/project.csproj.AssemblyReference.cache
+/Users/irgegh/Documents/GitHub/homework3/project/project/obj/Debug/net7.0/project.GeneratedMSBuildEditorConfig.editorconfig
+/Users/irgegh/Documents/GitHub/homework3/project/project/obj/Debug/net7.0/project.AssemblyInfoInputs.cache
+/Users/irgegh/Documents/GitHub/homework3/project/project/obj/Debug/net7.0/project.AssemblyInfo.cs
+/Users/irgegh/Documents/GitHub/homework3/project/project/obj/Debug/net7.0/project.csproj.CoreCompileInputs.cache
+/Users/irgegh/Documents/GitHub/homework3/project/project/obj/Debug/net7.0/project.dll
+/Users/irgegh/Documents/GitHub/homework3/project/project/obj/Debug/net7.0/refint/project.dll
+/Users/irgegh/Documents/GitHub/homework3/project/project/obj/Debug/net7.0/project.pdb
+/Users/irgegh/Documents/GitHub/homework3/project/project/obj/Debug/net7.0/project.genruntimeconfig.cache
+/Users/irgegh/Documents/GitHub/homework3/project/project/obj/Debug/net7.0/ref/project.dll
