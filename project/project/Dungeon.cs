@@ -10,10 +10,10 @@ namespace RPGGame
         {
             rooms = new Room[]
             {
-                new Room(new Unit("Воин"), new Weapon("Меч", 10, 20)),
-                new Room(new Unit("Маг"), new Weapon("Посох", 15, 25)),
-                new Room(new Unit("Лучник"), new Weapon("Лук", 8, 18)),
-                new Room(new Unit("Рыцарь"), new Weapon("Копье", 12, 22))
+                new Room(new Unit("Warrior"), new Weapon("Sword", 10, 20)),
+                new Room(new Unit("Mage"), new Weapon("Staff", 15, 25)),
+                new Room(new Unit("Archer"), new Weapon("Bow", 8, 18)),
+                new Room(new Unit("Knight"), new Weapon("Spear", 12, 22))
             };
         }
 

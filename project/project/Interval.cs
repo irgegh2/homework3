@@ -18,25 +18,25 @@ namespace RPGGame
             if (minValue < 0)
             {
                 minValue = 0;
-                Console.WriteLine("Некорректные входные данные");
+                Console.WriteLine("Invalid input data");
             }
             
             if (maxValue < 0)
             {
                 maxValue = 0;
-                Console.WriteLine("Некорректные входные данные");
+                Console.WriteLine("Invalid input data");
             }
             
             if (minValue > maxValue)
             {
                 (minValue, maxValue) = (maxValue, minValue);
-                Console.WriteLine("Некорректные входные данные");
+                Console.WriteLine("Invalid input data");
             }
             
             if (minValue == maxValue)
             {
                 maxValue += 10;
-                Console.WriteLine("Некорректные входные данные");
+                Console.WriteLine("Invalid input data");
             }
 
             Min = minValue;
