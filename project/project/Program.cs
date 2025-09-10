@@ -1,36 +1,15 @@
 ﻿using RPGGame;
 
-Console.WriteLine("=== Тестирование класса Unit ===\n");
+Console.WriteLine("=== RPG Dungeon ===\n");
 
-Unit unknownUnit = new Unit();
-Console.WriteLine($"Юнит по умолчанию: {unknownUnit.Name}");
-Console.WriteLine($"Здоровье: {unknownUnit.Health}");
-Console.WriteLine($"Урон: {unknownUnit.Damage}");
-Console.WriteLine($"Броня: {unknownUnit.Armor}");
-Console.WriteLine($"Фактическое здоровье: {unknownUnit.GetRealHealth():F2}\n");
+Dungeon dungeon = new Dungeon();
+dungeon.ShowRooms();
 
-Unit warrior = new Unit("Воин");
-Console.WriteLine($"Юнит: {warrior.Name}");
-Console.WriteLine($"Здоровье: {warrior.Health}");
-Console.WriteLine($"Урон: {warrior.Damage}");
-Console.WriteLine($"Броня: {warrior.Armor}");
-Console.WriteLine($"Фактическое здоровье: {warrior.GetRealHealth():F2}\n");
+Console.WriteLine("\n=== Тестирование структуры Interval ===");
+Interval damageInterval = new Interval(10, 20);
+Console.WriteLine($"Интервал урона: {damageInterval.Min} - {damageInterval.Max}");
+Console.WriteLine($"Случайное значение: {damageInterval.Get}");
+Console.WriteLine($"Еще одно случайное значение: {damageInterval.Get}");
 
-Console.WriteLine("=== Тестирование получения урона ===");
-float damageValue = 50f;
-bool isDead = warrior.SetDamage(damageValue);
-Console.WriteLine($"Нанесен урон: {damageValue}");
-Console.WriteLine($"Текущее здоровье: {warrior.Health:F2}");
-Console.WriteLine($"Фактическое здоровье: {warrior.GetRealHealth():F2}");
-Console.WriteLine($"Юнит погиб: {isDead}\n");
-
-damageValue = 200f;
-isDead = warrior.SetDamage(damageValue);
-Console.WriteLine($"Нанесен критический урон: {damageValue}");
-Console.WriteLine($"Текущее здоровье: {warrior.Health:F2}");
-Console.WriteLine($"Фактическое здоровье: {warrior.GetRealHealth():F2}");
-Console.WriteLine($"Юнит погиб: {isDead}\n");
-
-Console.WriteLine("Нажмите любую клавишу для выхода...");
+Console.WriteLine("\nНажмите любую клавишу для выхода...");
 Console.ReadKey();
-
