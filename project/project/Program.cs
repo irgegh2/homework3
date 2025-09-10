@@ -1,36 +1,66 @@
-﻿using RPGGame;
+﻿using System;
 
-Console.WriteLine("=== Тестирование класса Unit ===\n");
+namespace HomeWork
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                Console.WriteLine("\n=== Main Menu ===");
+                Console.WriteLine("Enter 1, 2, or 3 to check task 1, 2, or 3");
+                Console.WriteLine("Enter 'exit' to quit the program");
+                
+                string? input = Console.ReadLine();
 
-Unit unknownUnit = new Unit();
-Console.WriteLine($"Юнит по умолчанию: {unknownUnit.Name}");
-Console.WriteLine($"Здоровье: {unknownUnit.Health}");
-Console.WriteLine($"Урон: {unknownUnit.Damage}");
-Console.WriteLine($"Броня: {unknownUnit.Armor}");
-Console.WriteLine($"Фактическое здоровье: {unknownUnit.GetRealHealth():F2}\n");
+                if (input == "exit")
+                {
+                    Console.WriteLine("Goodbye!");
+                    break;
+                }
 
-Unit warrior = new Unit("Воин");
-Console.WriteLine($"Юнит: {warrior.Name}");
-Console.WriteLine($"Здоровье: {warrior.Health}");
-Console.WriteLine($"Урон: {warrior.Damage}");
-Console.WriteLine($"Броня: {warrior.Armor}");
-Console.WriteLine($"Фактическое здоровье: {warrior.GetRealHealth():F2}\n");
+                if (int.TryParse(input, out int task))
+                {
+                    switch (task)
+                    {
+                        case 1:
+                            CheckTaskFirst();
+                            break;
+                        case 2:
+                            CheckTaskSecond();
+                            break;
+                        case 3:
+                            CheckTaskThird();
+                            break;
+                        default:
+                            Console.WriteLine("Invalid task number. Please enter 1, 2, or 3.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a number or 'exit'.");
+                }
+            }
+        }
 
-Console.WriteLine("=== Тестирование получения урона ===");
-float damageValue = 50f;
-bool isDead = warrior.SetDamage(damageValue);
-Console.WriteLine($"Нанесен урон: {damageValue}");
-Console.WriteLine($"Текущее здоровье: {warrior.Health:F2}");
-Console.WriteLine($"Фактическое здоровье: {warrior.GetRealHealth():F2}");
-Console.WriteLine($"Юнит погиб: {isDead}\n");
+        private static void CheckTaskFirst()
+        {
+            var listTask = new ListTask();
+            listTask.TaskLoop();
+        }
 
-damageValue = 200f;
-isDead = warrior.SetDamage(damageValue);
-Console.WriteLine($"Нанесен критический урон: {damageValue}");
-Console.WriteLine($"Текущее здоровье: {warrior.Health:F2}");
-Console.WriteLine($"Фактическое здоровье: {warrior.GetRealHealth():F2}");
-Console.WriteLine($"Юнит погиб: {isDead}\n");
+        private static void CheckTaskSecond()
+        {
+            var dictionaryTask = new DictionaryTask();
+            dictionaryTask.TaskLoop();
+        }
 
-Console.WriteLine("Нажмите любую клавишу для выхода...");
-Console.ReadKey();
-
+        private static void CheckTaskThird()
+        {
+            var linkedListTask = new DoublyLinkedListTask();
+            linkedListTask.TaskLoop();
+        }
+    }
+}
