@@ -7,19 +7,25 @@ namespace DefaultNamespace
 {
 	public class PositionSaver : MonoBehaviour
 	{
+		[System.Serializable]
 		public struct Data
 		{
 			public Vector3 Position;
 			public float Time;
 		}
 
+		[ReadOnly]
+		[Tooltip("Для заполнения этого поля воспользуйтесь контекстным меню в инспекторе и командой 'Create File'")]
 		private TextAsset _json;
 
+		[SerializeField]
+		[HideInInspector]
 		public List<Data> Records { get; private set; }
 
 		private void Awake()
 		{
 			//todo comment: Что будет, если в теле этого условия не сделать выход из метода?
+			// Если не сделать return, то выполнение продолжится и произойдет попытка десериализации из null объекта, что приведет к ошибке.
 			if (_json == null)
 			{
 				gameObject.SetActive(false);
@@ -29,6 +35,7 @@ namespace DefaultNamespace
 			
 			JsonUtility.FromJsonOverwrite(_json.text, this);
 			//todo comment: Для чего нужна эта проверка (что она позволяет избежать)?
+			// Эта проверка позволяет избежать NullReferenceException при попытке обращения к Records, если файл пустой или не содержит данных
 			if (Records == null)
 				Records = new List<Data>(10);
 		}
@@ -36,12 +43,14 @@ namespace DefaultNamespace
 		private void OnDrawGizmos()
 		{
 			//todo comment: Зачем нужны эти проверки (что они позволляют избежать)?
+			// Эти проверки позволяют избежать NullReferenceException и IndexOutOfRangeException при попытке отрисовки пустого или неинициализированного списка.
 			if (Records == null || Records.Count == 0) return;
 			var data = Records;
 			var prev = data[0].Position;
 			Gizmos.color = Color.green;
 			Gizmos.DrawWireSphere(prev, 0.3f);
 			//todo comment: Почему итерация начинается не с нулевого элемента?
+			// Итерация начинается с 1, потому что нулевой элемент уже обработан выше (нарисована сфера), и теперь нужно рисовать линии между соседними точками
 			for (int i = 1; i < data.Count; i++)
 			{
 				var curr = data[i].Position;
@@ -56,8 +65,10 @@ namespace DefaultNamespace
 		private void CreateFile()
 		{
 			//todo comment: Что происходит в этой строке?
+			// Создается файловый поток для записи нового файла "Path.txt" в папку Assets проекта
 			var stream = File.Create(Path.Combine(Application.dataPath, "Path.txt"));
 			//todo comment: Подумайте для чего нужна эта строка? (а потом проверьте догадку, закомментировав) 
+			// Эта строка освобождает файловый поток и закрывает файл, что необходимо для корректной работы с файловой системой
 			stream.Dispose();
 			UnityEditor.AssetDatabase.Refresh();
 			//В Unity можно искать объекты по их типу, для этого используется префикс "t:"
@@ -70,6 +81,7 @@ namespace DefaultNamespace
 				//Этой командой можно загрузить сам ассет
 				var asset = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>(path);
 				//todo comment: Для чего нужны эти проверки?
+				// Эти проверки нужны для поиска конкретного файла "Path" среди всех TextAsset'ов и избежания NullReferenceException.
 				if(asset != null && asset.name == "Path")
 				{
 					_json = asset;
@@ -77,6 +89,7 @@ namespace DefaultNamespace
 					UnityEditor.AssetDatabase.SaveAssets();
 					UnityEditor.AssetDatabase.Refresh();
 					//todo comment: Почему мы здесь выходим, а не продолжаем итерироваться?
+					// Мы выходим здесь, потому что уже нашли нужный файл "Path" и присвоили его полю _json. Дальнейшая итерация не нужна
 					return;
 				}
 			}
@@ -84,7 +97,12 @@ namespace DefaultNamespace
 
 		private void OnDestroy()
 		{
-			//todo logic...
+			if (_json != null && Records != null)
+			{
+				var jsonString = JsonUtility.ToJson(this, true);
+				System.IO.File.WriteAllText(UnityEditor.AssetDatabase.GetAssetPath(_json), jsonString);
+				UnityEditor.AssetDatabase.Refresh();
+			}
 		}
 #endif
 	}
