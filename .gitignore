@@ -1,0 +1,18 @@
+# Папки Unity, которые должны игнорироваться
+Library/
+Temp/
+Obj/
+Build/
+Logs/
+
+# Файлы, которые должны игнорироваться
+*.sln
+*.suo
+*.userprefs
+*.pidb
+*.pdb
+*.dstrip
+*. CrashHandler.log
+
+# Прочие временные файлы
+*.tmp
