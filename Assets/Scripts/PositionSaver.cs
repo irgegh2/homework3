@@ -14,13 +14,14 @@ namespace DefaultNamespace
 			public float Time;
 		}
 
-		[ReadOnly]
-		[Tooltip("Для заполнения этого поля воспользуйтесь контекстным меню в инспекторе и командой 'Create File'")]
-		private TextAsset _json;
+	[SerializeField]
+	[ReadOnly]
+	[Tooltip("Для заполнения этого поля воспользуйтесь контекстным меню в инспекторе и командой 'Create File'")]
+	private TextAsset _json;
 
-		[SerializeField]
-		[HideInInspector]
-		public List<Data> Records { get; private set; }
+	[field: SerializeField]
+	[field: HideInInspector]
+	public List<Data> Records { get; private set; }
 
 		private void Awake()
 		{
